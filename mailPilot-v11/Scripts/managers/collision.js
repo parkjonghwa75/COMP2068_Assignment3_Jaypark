@@ -1,5 +1,5 @@
 ﻿/// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/island.ts" />
+/// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 var managers;
@@ -9,7 +9,7 @@ var managers;
         function Collision(plane, island, clouds, scoreboard) {
             this.clouds = [];
             this.plane = plane;
-            this.island = island;
+            this.bullet = bullet;
             this.clouds = clouds;
             this.scoreboard = scoreboard;
         }
@@ -38,7 +38,7 @@ var managers;
             p1.y = this.plane.image.y;
             p2.x = cloud.image.x;
             p2.y = cloud.image.y;
-            if (this.distance(p1, p2) < ((this.plane.height / 2) + (cloud.height / 2))) {
+            if (this.distance(p1, p2) < ((this.plane.height / 2) + (cloud.height / 4))) {
                 createjs.Sound.play("thunder");
                 this.scoreboard.lives -= 1;
                 cloud.reset();
@@ -51,12 +51,12 @@ var managers;
             var p2 = new createjs.Point();
             p1.x = this.plane.image.x;
             p1.y = this.plane.image.y;
-            p2.x = this.island.image.x;
-            p2.y = this.island.image.y;
-            if (this.distance(p1, p2) < ((this.plane.height / 2) + (this.island.height / 2))) {
+            p2.x = this.bullet.image.x;
+            p2.y = this.bullet.image.y;
+            if (this.distance(p1, p2) < ((this.plane.height / 2) + (this.bullet.height / 2))) {
                 createjs.Sound.play("yay");
                 this.scoreboard.score += 100;
-                this.island.reset();
+                this.bullet.reset();
             }
         };
 

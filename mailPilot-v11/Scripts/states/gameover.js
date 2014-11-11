@@ -1,15 +1,15 @@
 ﻿/// <reference path="../constants.ts" />
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/island.ts" />
+/// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/label.ts" />
-/// <reference path="../objects/ocean.ts" />
+/// <reference path="../objects/bgsky.ts" />
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 var states;
 (function (states) {
     function gameOverState() {
-        ocean.update();
+        bgSky.update();
     }
     states.gameOverState = gameOverState;
 
@@ -33,7 +33,7 @@ var states;
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        ocean = new objects.Ocean(stage, game);
+        bgSky = new objects.BgSky(stage, game);
 
         // Show Cursor
         stage.cursor = "default";

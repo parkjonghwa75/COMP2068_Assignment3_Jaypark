@@ -1,16 +1,16 @@
 ﻿/// <reference path="../objects/button.ts" />
 /// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/island.ts" />
+/// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/label.ts" />
-/// <reference path="../objects/ocean.ts" />
+/// <reference path="../objects/bgsky.ts" />
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 /// <reference path="../managers/collision.ts" />
 var states;
 (function (states) {
     function playState() {
-        ocean.update();
-        island.update();
+        bgSky.update();
+        bullet.update();
         plane.update();
 
         for (var count = 0; count < constants.CLOUD_NUM; count++) {
@@ -37,8 +37,8 @@ var states;
         game = new createjs.Container();
 
         // Instantiate Game Objects
-        ocean = new objects.Ocean(stage, game);
-        island = new objects.Island(stage, game);
+        bgSky = new objects.BgSky(stage, game);
+        bullet = new objects.Bullet(stage, game);
         plane = new objects.Plane(stage, game);
 
         // Show Cursor
@@ -52,7 +52,7 @@ var states;
         scoreboard = new objects.Scoreboard(stage, game);
 
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, island, clouds, scoreboard);
+        collision = new managers.Collision(plane, bullet, clouds, scoreboard);
 
         stage.addChild(game);
     }
